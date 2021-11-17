@@ -8,15 +8,15 @@ public class Main_TEST {
         Administration administration = new Administration();
 
         getBookForPublishingRetailerID_TEST.test
-                (administration, "src/OutputTest/getBookForPublishingRetailerID_TEST1", 13);
+                (administration, "src/OutputTest/getBooksForPublishingRetailerID_TEST1", 13);
         getBookForPublishingRetailerID_TEST.test
-                (administration, "src/OutputTest/getBookForPublishingRetailerID_TEST2", 2);
+                (administration, "src/OutputTest/getBooksForPublishingRetailerID_TEST2", 2);
         getBookForPublishingRetailerID_TEST.test
-                (administration, "src/OutputTest/getBookForPublishingRetailerID_TEST3", 30);
+                (administration, "src/OutputTest/getBooksForPublishingRetailerID_TEST3", 30);
         getBookForPublishingRetailerID_TEST.test
-                (administration, "src/OutputTest/getBookForPublishingRetailerID_TEST4", 22);
+                (administration, "src/OutputTest/getBooksForPublishingRetailerID_TEST4", 22);
         getBookForPublishingRetailerID_TEST.test
-                (administration, "src/OutputTest/getBookForPublishingRetailerID_TEST5", 16);
+                (administration, "src/OutputTest/getBooksForPublishingRetailerID_TEST5", 16);
 
         getLanguageForPublishingRetailerID_TEST.test
                 (administration, "src/OutputTest/getLanguageForPublishingRetailerID_TEST1", 13);
