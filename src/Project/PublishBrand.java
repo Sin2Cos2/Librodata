@@ -2,7 +2,7 @@ package Project;
 
 import java.util.ArrayList;
 
-public class PublishBrand implements IPublishingArtifact{
+public class PublishBrand implements IPublishingArtifact {
     private final int ID;
     private String name;
     private ArrayList<Book> books;
@@ -29,8 +29,8 @@ public class PublishBrand implements IPublishingArtifact{
         this.name = name;
     }
 
-    public void addBook(Book book){
-        if(book != null)
+    public void addBook(Book book) {
+        if (book != null)
             this.books.add(book);
     }
 
@@ -38,11 +38,14 @@ public class PublishBrand implements IPublishingArtifact{
         this.books = books;
     }
 
+    /**
+     * @return String in XML format which contains publishing brand's information with all books from arrayList
+     */
     @Override
     public String Publish() {
         String listOfBooks = "";
-        for(Book book: books) {
-            if(book != null)
+        for (Book book : books) {
+            if (book != null)
                 listOfBooks += Book.bookInformation(book);
         }
 
@@ -51,9 +54,7 @@ public class PublishBrand implements IPublishingArtifact{
                 "\t\t<ID>" + this.getID() + "</ID>\n" +
                 "\t\t<Name>" + this.getName() + "</Name>\n" +
                 "\t</publishingBrand>\n" +
-                "\t<books>\n" +
-                listOfBooks +
-                "\t</books>\n" +
+                "\t<books>\n" + listOfBooks + "\t</books>\n" +
                 "</xml>";
     }
 }

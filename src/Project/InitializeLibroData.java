@@ -11,12 +11,20 @@ public abstract class InitializeLibroData {
     public InitializeLibroData() {
     }
 
-    public static ArrayList<Book> initializeBooks(){
+    /**
+     * Open a file with path "src/init/books.in" with a BufferReader
+     * Read file line by line and initialize an instance of Book on each iteration
+     * String date is parsed to Calendar with SimpleDateFormat
+     * At the end, all the books are stocked in arrayList
+     *
+     * @return ArrayList of initialized books
+     */
+    public static ArrayList<Book> initializeBooks() {
         ArrayList<Book> books = new ArrayList<>();
 
-        try(BufferedReader br = new BufferedReader(new FileReader("src/init/books.in"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("src/init/books.in"))) {
             String line = br.readLine();
-            while((line = br.readLine()) != null){
+            while ((line = br.readLine()) != null) {
                 String[] splitLine = line.split("###");
                 int ID = Integer.parseInt(splitLine[0]);
                 String name = splitLine[1];
@@ -44,12 +52,19 @@ public abstract class InitializeLibroData {
         return books;
     }
 
-    public static ArrayList<Language> initializeLanguages(){
+    /**
+     * Open a file("src/init/languages.in") with a BufferReader
+     * Read file line by line and initialize an instance of Language class
+     * All the languages are stocked in ArrayList languages
+     *
+     * @return ArrayList of Languages
+     */
+    public static ArrayList<Language> initializeLanguages() {
         ArrayList<Language> languages = new ArrayList<>();
 
-        try(BufferedReader br = new BufferedReader(new FileReader("src/init/languages.in"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("src/init/languages.in"))) {
             String line = br.readLine();
-            while ((line = br.readLine()) != null){
+            while ((line = br.readLine()) != null) {
                 String[] splitLine = line.split("###");
                 int ID = Integer.parseInt(splitLine[0]);
                 String code = splitLine[1];
@@ -67,12 +82,19 @@ public abstract class InitializeLibroData {
         return languages;
     }
 
-    public static ArrayList<Author> initializeAuthors(){
+    /**
+     * Open a file("src/init/authors.in") with a BufferReader
+     * Read file line by line and initialize an instance of Author class
+     * All the authors are stocked in ArrayList authors
+     *
+     * @return ArrayList of authors
+     */
+    public static ArrayList<Author> initializeAuthors() {
         ArrayList<Author> authors = new ArrayList<>();
 
-        try(BufferedReader br = new BufferedReader(new FileReader("src/init/authors.in"))){
+        try (BufferedReader br = new BufferedReader(new FileReader("src/init/authors.in"))) {
             String line = br.readLine();
-            while((line = br.readLine()) != null){
+            while ((line = br.readLine()) != null) {
                 String[] splitLine = line.split("###");
                 int ID = Integer.parseInt(splitLine[0]);
                 String firstName = splitLine[1];
@@ -90,16 +112,24 @@ public abstract class InitializeLibroData {
         return authors;
     }
 
-    public static <T> ArrayList<T> initializeStructure(String path, String type){
+    /**
+     * A generic method that can initialize 4 structures of the following types:
+     * country, editorialGroup, publishingBrand, publishingRetailer
+     *
+     * @param path to the file from which information will be read
+     * @param type of objects which will be initialized
+     * @return arrayList with objects of passed type
+     */
+    public static <T> ArrayList<T> initializeStructure(String path, String type) {
         ArrayList<T> structure = new ArrayList<>();
 
-        try(BufferedReader br = new BufferedReader(new FileReader(path))){
+        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
             String line = br.readLine();
-            while ((line = br.readLine()) != null){
+            while ((line = br.readLine()) != null) {
                 String[] splitLine = line.split("###");
                 Integer ID = Integer.parseInt(splitLine[0]);
                 T temp;
-                switch (type){
+                switch (type) {
                     case "country" -> temp = (T) new Country(ID, splitLine[1]);
                     case "editorialGroup" -> temp = (T) new EditorialGroup(ID, splitLine[1]);
                     case "publishingBrand" -> temp = (T) new PublishBrand(ID, splitLine[1]);

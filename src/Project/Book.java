@@ -1,13 +1,12 @@
 package Project;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-public class Book implements IPublishingArtifact{
+public class Book implements IPublishingArtifact {
     private final int ID;
     private String name;
     private String subtitle;
@@ -87,10 +86,13 @@ public class Book implements IPublishingArtifact{
         return languageID;
     }
 
+    /**
+     * @return String form of Calendar date
+     */
     public String getCreatedOn() {
         Date date = this.createdOn.getTime();
         DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
-        String strDate =dateFormat.format(date);
+        String strDate = dateFormat.format(date);
         return strDate;
     }
 
@@ -98,35 +100,41 @@ public class Book implements IPublishingArtifact{
         return authors;
     }
 
-    public void addAuthor(Author author){
-        if(author != null)
+    public void addAuthor(Author author) {
+        if (author != null)
             this.authors.add(author);
     }
 
-    public String getListOfAuthors(){
-        if(authors.size() == 0)
+    /**
+     * @return String which contains all authors
+     */
+    public String getListOfAuthors() {
+        if (authors.size() == 0)
             return "";
 
         String tempAuthors = "";
-        for(Author author : authors)
+        for (Author author : authors)
             tempAuthors += author.getFirstName() + " " + author.getLastName() + ",";
         tempAuthors = tempAuthors.substring(0, tempAuthors.length() - 1);
 
-        if(tempAuthors.charAt(tempAuthors.length() - 1) == ' ')
+        if (tempAuthors.charAt(tempAuthors.length() - 1) == ' ')
             tempAuthors = tempAuthors.substring(0, tempAuthors.length() - 1);
-        if(tempAuthors.charAt(0) == ' ')
+        if (tempAuthors.charAt(0) == ' ')
             tempAuthors = tempAuthors.substring(1, tempAuthors.length());
 
         return tempAuthors;
     }
 
+    /**
+     * @return Book's information in XML format
+     */
     @Override
     public String Publish() {
 
         return "<xml>\n" +
                 "\t<title>" + this.getName() + "</title>\n" +
                 "\t<subtitle>" + this.getSubtitle() + "</subtitle>\n" +
-                "\t<isbn>" + this.getISBN() +"</isbn>\n" +
+                "\t<isbn>" + this.getISBN() + "</isbn>\n" +
                 "\t<pageCount>" + this.getPageCount() + "</pageCount>\n" +
                 "\t<keywords>" + this.getKeywords() + "</keywords>\n" +
                 "\t<languageID>" + this.getLanguageID() + "</languageID>\n" +
@@ -135,12 +143,18 @@ public class Book implements IPublishingArtifact{
                 "</xml>";
     }
 
-    public static String bookInformation(Book book){
+
+    /**
+     * Static method, used in Publish() methods in classes which implements IPublishingArtifact interface
+     *
+     * @return Information about Book for XML
+     */
+    public static String bookInformation(Book book) {
 
         return "\t\t<book>\n" +
                 "\t\t\t<title>" + book.getName() + "</title>\n" +
                 "\t\t\t<subtitle>" + book.getSubtitle() + "</subtitle>\n" +
-                "\t\t\t<isbn>" + book.getISBN() +"</isbn>\n" +
+                "\t\t\t<isbn>" + book.getISBN() + "</isbn>\n" +
                 "\t\t\t<pageCount>" + book.getPageCount() + "</pageCount>\n" +
                 "\t\t\t<keywords>" + book.getKeywords() + "</keywords>\n" +
                 "\t\t\t<languageID>" + book.getLanguageID() + "</languageID>\n" +
